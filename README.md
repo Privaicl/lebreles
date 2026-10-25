@@ -38,7 +38,7 @@ Una persona puede cambiar el código y ver cómo cambia el RAT en Veil antes de 
 5. En Veil, el RAT muestra el dato nuevo en la actividad "Solicitud de colonización".
 
 Ya hay un PR listo para la demo: **Reporte de avistamiento**, que agrega una actividad nueva.
-Después de hacer merge: `npm run db:migrate:remote && npx wrangler deploy`.
+Al hacer merge, el CI aplica la migración nueva y despliega solo.
 
 ## Desarrollo
 
@@ -55,6 +55,17 @@ Las imágenes y audios ya están en `public/`. Para volver a descargarlos:
 (créditos en `docs/media-credits.md`).
 
 ## Despliegue
+
+Automático con GitHub Actions (`.github/workflows/ci.yml`):
+
+- Cada PR corre `typecheck` y los tests.
+- Cada push a `main` (por ejemplo, al hacer merge de un PR) corre los tests, aplica las migraciones
+  de D1 pendientes y despliega el Worker.
+
+El workflow necesita dos secretos del repo: `CLOUDFLARE_API_TOKEN` (token con permisos de
+Workers Scripts y D1, edición) y `CLOUDFLARE_ACCOUNT_ID`.
+
+A mano, desde una máquina con `wrangler login`:
 
 ```bash
 npm run db:migrate:remote
