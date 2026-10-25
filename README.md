@@ -12,6 +12,7 @@ Nada de esto es real. Los lebreles no colonizan la Tierra (que sepamos) y nadie 
 |---|---|---|---|---|---|
 | Solicitud de colonización | nombre, RUT, correo, teléfono, dirección, hora en que apaga la luz, si la casa tiene escaleras | Evaluar si el hogar puede recibir a un lebrel | 24 meses | Clínica Veterinaria Órbita Baja SpA (visita de evaluación; no recibe el correo) | `src/activities/solicitud.ts`, `src/partners/clinica.ts`, `migrations/0001_*.sql` |
 | Boletín de la nave | correo, aceptación y su fecha | Enviar el boletín mensual | Hasta la baja | Brevo (Unión Europea) | `src/activities/boletin.ts`, `src/partners/brevo.ts`, `migrations/0002_*.sql` |
+| Reporte de avistamiento | nombre, correo, comuna, fecha, descripción | Catalogar avistamientos | 12 meses | Ninguno | `src/activities/avistamiento.ts`, `migrations/0004_*.sql` |
 | Analítica del sitio | id aleatorio del visitante (cookie `lb_vid`), ruta, sitio de origen, navegador | Estadísticas de uso | 13 meses | Ninguno | `src/activities/analitica.ts`, `public/js/analytics.js`, `migrations/0003_*.sql` |
 
 Cookies:
@@ -37,8 +38,7 @@ Una persona puede cambiar el código y ver cómo cambia el RAT en Veil antes de 
 4. Hace commit en una rama nueva y abre un PR.
 5. En Veil, el RAT muestra el dato nuevo en la actividad "Solicitud de colonización".
 
-Ya hay un PR listo para la demo: **Reporte de avistamiento**, que agrega una actividad nueva.
-Después de hacer merge: `npm run db:migrate:remote && npx wrangler deploy`.
+Al desplegar esta versión hay que aplicar la migración nueva: `npm run db:migrate:remote && npx wrangler deploy`.
 
 ## Desarrollo
 

@@ -78,7 +78,7 @@
 
   .form-card{margin-top:0;background:var(--deep);border:1px solid var(--line);padding:44px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px 22px}
   .form-card label{font-size:13px;color:var(--mist);display:block;margin-bottom:6px}
-  .form-card input,.form-card select{width:100%;background:var(--void);border:1px solid #ebe5d633;color:var(--bone);padding:12px 14px;border-radius:8px;font:400 15px "Schibsted Grotesk"}
+  .form-card input,.form-card select,.form-card textarea{width:100%;background:var(--void);border:1px solid #ebe5d633;color:var(--bone);padding:12px 14px;border-radius:8px;font:400 15px "Schibsted Grotesk"}
   .form-card .full{grid-column:1/-1}
 
   footer{padding:46px 5vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--mist);font-size:14px}
@@ -200,3 +200,6 @@
     .frags li{border-right:0;border-bottom:1px solid var(--line)}
     .frags li:last-child{border-bottom:0}
   }
+
+  .form-card textarea{resize:vertical;line-height:1.5}
+  .form-card input[type=date]{color-scheme:dark}

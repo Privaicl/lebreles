@@ -17,7 +17,7 @@
   <div class="stars"></div>
   <nav>
     <a class="brand" href="#top">Misión Lebrel</a>
-    <span class="links"><a href="#archivo">Archivo</a><a href="#vinculo">El Vínculo</a><a href="#credo">Credo</a><a href="#mensaje">Primer mensaje</a><a href="#solicitud">Solicitud</a><a href="#boletin">Boletín</a></span>
+    <span class="links"><a href="#archivo">Archivo</a><a href="#vinculo">El Vínculo</a><a href="#credo">Credo</a><a href="#mensaje">Primer mensaje</a><a href="#avistamientos">Avistamientos</a><a href="#solicitud">Solicitud</a><a href="#boletin">Boletín</a></span>
   </nav>
   <div class="hero-copy">
     <span class="mono">NV-MOTHER-ALPHA · SEÑAL 0001 · 03:40</span>
@@ -131,8 +131,23 @@
   </div>
 </section>
 
+<section style="padding-top:40px" id="avistamientos">
+  <span class="mono kicker">VI · AVISTAMIENTOS</span>
+  <h2 style="margin-bottom:14px">¿Viste a uno donde no debía estar? <em>Cuéntanos.</em></h2>
+  <p style="color:var(--mist);max-width:34em;margin-bottom:36px">Anota dónde y cuándo. No hace falta que describas los ojos.</p>
+  <form class="form-card" id="f-avistamiento" method="post" action="/api/avistamiento" novalidate>
+    <div><label for="a-nombre">Nombre</label><input id="a-nombre" name="nombre" required autocomplete="name" placeholder="Nombre Apellido"></div>
+    <div><label for="a-correo">Correo</label><input id="a-correo" name="correo" type="email" required autocomplete="email" placeholder="nombre@correo.cl"></div>
+    <div><label for="a-comuna">Comuna</label><input id="a-comuna" name="comuna" required placeholder="Comuna Sin Nombre"></div>
+    <div><label for="a-fecha">Fecha</label><input id="a-fecha" name="fecha" type="date" required></div>
+    <div class="full"><label for="a-desc">Qué viste</label><textarea id="a-desc" name="descripcion" required maxlength="2000" rows="4" placeholder="Estaba en el pasillo. No se movía."></textarea></div>
+    <div class="hp" aria-hidden="true"><label>No llenar<input name="sitio_web" tabindex="-1" autocomplete="off"></label></div>
+    <div class="full actions"><button class="btn primary" type="submit">Enviar reporte</button><p class="form-msg mono" role="status" aria-live="polite"></p></div>
+  </form>
+</section>
+
 <section style="padding-top:40px" id="solicitud">
-  <span class="mono kicker">VI · SOLICITUD</span>
+  <span class="mono kicker">VII · SOLICITUD</span>
   <h2 style="margin-bottom:14px">Si aceptas ser colonizado, <em>déjanos la dirección.</em></h2>
   <p style="color:var(--mist);max-width:34em;margin-bottom:36px">Las solicitudes se revisan de noche. No respondemos. Si la tuya es aprobada, un día vas a abrir la puerta y vamos a estar ahí.</p>
   <form class="form-card" id="f-solicitud" method="post" action="/api/solicitud" novalidate>
@@ -155,7 +170,7 @@
     <span class="cam mono" style="left:14px;top:12px">CAM-07 · PATIO · 03:41:55</span>
   </div>
   <div>
-    <span class="mono kicker">VII · BOLETÍN</span>
+    <span class="mono kicker">VIII · BOLETÍN</span>
     <h2>Una vez al mes te escribimos. <em>No contestes.</em></h2>
     <p style="color:var(--mist);margin-top:16px;max-width:30em">El avance de la colonización, comuna por comuna. Los avistamientos que nadie explicó. Lo que la nave pide transmitir.</p>
     <form id="f-boletin" method="post" action="/api/boletin" novalidate>
