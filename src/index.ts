@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import type { Env } from './env'
+import { fail } from './lib/respond'
 import { ensureSession, hasSession } from './lib/session'
 
 const app = new Hono<{ Bindings: Env }>()
@@ -14,7 +15,7 @@ app.use('/api/*', async (c, next) => {
   const allowed = c.env.ALLOWED_ORIGINS.split(',').map((o) => o.trim())
   const origin = c.req.header('origin') ?? ''
   if (!allowed.includes(origin) || !hasSession(c.req.raw)) {
-    return c.json({ ok: false, mensaje: 'Esta solicitud no vino de aquí.' }, 403)
+    return fail(c, { mensaje: 'Esta solicitud no vino de aquí.' }, 'top', 403)
   }
   return next()
 })
