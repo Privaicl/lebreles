@@ -42,12 +42,29 @@ describe('POST /api/boletin', () => {
     expect((await rows()).length).toBe(1)
   })
 
-  it('baja removes the subscriber', async () => {
+  it('honeypot pretends success', async () => {
+    const res = await post('/api/boletin', { correo: 'a@b.cl', acepta: 'on', sitio_web: 'x' })
+    expect(res.status).toBe(201)
+    expect(((await res.json()) as Row).mensaje).toBe(OK)
+    expect((await rows()).length).toBe(0)
+  })
+
+  it('baja link only asks for confirmation', async () => {
     await post('/api/boletin', { correo: 'a@b.cl', acepta: 'on' })
     const [row] = await rows()
-    const res = await SELF.fetch(`https://lebreles.cl/api/boletin/baja?token=${row.baja_token}`, {
-      headers: { accept: 'application/json' },
-    })
+    const res = await SELF.fetch(`https://lebreles.cl/api/boletin/baja?token=${row.baja_token}`)
+    expect(res.status).toBe(200)
+    const html = await res.text()
+    expect(html).toContain('method="post" action="/api/boletin/baja"')
+    expect(html).toContain(`value="${row.baja_token}"`)
+    expect(res.headers.get('set-cookie')).toMatch(/^lb_session=/)
+    expect((await rows()).length).toBe(1)
+  })
+
+  it('confirming the baja removes the subscriber', async () => {
+    await post('/api/boletin', { correo: 'a@b.cl', acepta: 'on' })
+    const [row] = await rows()
+    const res = await post('/api/boletin/baja', { token: String(row.baja_token) })
     expect(res.status).toBe(200)
     expect(((await res.json()) as Row).mensaje).toBe('Ya no te escribimos.')
     expect((await rows()).length).toBe(0)

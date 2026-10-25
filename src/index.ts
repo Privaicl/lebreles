@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { handleCollect } from './activities/analitica'
-import { handleBaja, handleBoletin } from './activities/boletin'
+import { handleBaja, handleBajaConfirm, handleBoletin } from './activities/boletin'
 import { handleSolicitud } from './activities/solicitud'
 import type { Env } from './env'
 import { fail } from './lib/respond'
@@ -8,6 +8,11 @@ import { ensureSession, hasSession } from './lib/session'
 import { purgeExpired } from './retention'
 
 const app = new Hono<{ Bindings: Env }>()
+
+app.onError((err, c) => {
+  console.error(JSON.stringify({ evento: 'error', ruta: c.req.path, mensaje: String(err) }))
+  return fail(c, { mensaje: 'Se cortó la señal con la nave. Intenta más tarde.' }, 'top', 500)
+})
 
 app.get('/', async (c) => ensureSession(c.req.raw, await c.env.ASSETS.fetch(c.req.raw)))
 app.get('/index.html', async (c) => ensureSession(c.req.raw, await c.env.ASSETS.fetch(c.req.raw)))
@@ -26,7 +31,8 @@ app.use('/api/*', async (c, next) => {
 
 app.post('/api/solicitud', handleSolicitud)
 app.post('/api/boletin', handleBoletin)
-app.get('/api/boletin/baja', handleBaja)
+app.get('/api/boletin/baja', handleBajaConfirm)
+app.post('/api/boletin/baja', handleBaja)
 app.post('/api/collect', handleCollect)
 
 async function scheduled(event: ScheduledController, env: Env, ctx: ExecutionContext) {
