@@ -1,0 +1,4 @@
+# Copiar a .dev.vars solo para probar las integraciones en local.
+# En producción estas claves NO están configuradas: las llamadas a Brevo y a la clínica se omiten.
+BREVO_API_KEY=
+CLINICA_API_KEY=
