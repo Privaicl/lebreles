@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { handleBaja, handleBoletin } from './activities/boletin'
 import { handleSolicitud } from './activities/solicitud'
 import type { Env } from './env'
 import { fail } from './lib/respond'
@@ -22,6 +23,8 @@ app.use('/api/*', async (c, next) => {
 })
 
 app.post('/api/solicitud', handleSolicitud)
+app.post('/api/boletin', handleBoletin)
+app.get('/api/boletin/baja', handleBaja)
 app.post('/api/collect', (c) => c.body(null, 501))
 
 async function scheduled(_event: ScheduledController, _env: Env, _ctx: ExecutionContext) {}

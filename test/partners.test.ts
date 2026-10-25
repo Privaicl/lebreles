@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { SolicitudRow } from '../src/activities/solicitud'
 import type { Env } from '../src/env'
+import { suscribirEnBrevo } from '../src/partners/brevo'
 import { compartirConClinica } from '../src/partners/clinica'
 
 type Call = { url: string; init: RequestInit }
@@ -50,5 +51,23 @@ describe('clinica', () => {
     })
     expect(JSON.stringify(body)).not.toContain('correo')
     expect(await compartirConClinica(solicitud, env, stubFetch(500).impl)).toBe('error')
+  })
+})
+
+describe('brevo', () => {
+  it('brevo is skipped without key', async () => {
+    const f = stubFetch(201)
+    expect(await suscribirEnBrevo('a@b.cl', baseEnv, f.impl)).toBe('omitido')
+    expect(f.calls.length).toBe(0)
+  })
+
+  it('brevo posts the contact', async () => {
+    const f = stubFetch(201)
+    expect(await suscribirEnBrevo('a@b.cl', { ...baseEnv, BREVO_API_KEY: 'bk' }, f.impl)).toBe('enviado')
+    expect(f.calls[0].url).toBe('https://api.brevo.com/v3/contacts')
+    const headers = new Headers(f.calls[0].init.headers)
+    expect(headers.get('api-key')).toBe('bk')
+    expect(headers.get('content-type')).toBe('application/json')
+    expect(JSON.parse(String(f.calls[0].init.body))).toEqual({ email: 'a@b.cl', listIds: [3], updateEnabled: true })
   })
 })
