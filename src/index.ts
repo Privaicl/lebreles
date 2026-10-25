@@ -5,6 +5,7 @@ import { handleSolicitud } from './activities/solicitud'
 import type { Env } from './env'
 import { fail } from './lib/respond'
 import { ensureSession, hasSession } from './lib/session'
+import { purgeExpired } from './retention'
 
 const app = new Hono<{ Bindings: Env }>()
 
@@ -28,6 +29,8 @@ app.post('/api/boletin', handleBoletin)
 app.get('/api/boletin/baja', handleBaja)
 app.post('/api/collect', handleCollect)
 
-async function scheduled(_event: ScheduledController, _env: Env, _ctx: ExecutionContext) {}
+async function scheduled(event: ScheduledController, env: Env, ctx: ExecutionContext) {
+  ctx.waitUntil(purgeExpired(env.DB, new Date(event.scheduledTime)))
+}
 
 export default { fetch: app.fetch, scheduled }
