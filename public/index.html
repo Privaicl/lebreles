@@ -175,6 +175,7 @@
     <p style="color:var(--mist);margin-top:16px;max-width:30em">El avance de la colonización, comuna por comuna. Los avistamientos que nadie explicó. Lo que la nave pide transmitir.</p>
     <form id="f-boletin" method="post" action="/api/boletin" novalidate>
       <div class="field"><label class="sr" for="b-correo">Correo</label><input id="b-correo" name="correo" type="email" required autocomplete="email" placeholder="nombre@correo.cl"><button class="btn primary" type="submit">Suscribirme</button></div>
+      <div class="hp" aria-hidden="true"><label>No llenar<input name="sitio_web" tabindex="-1" autocomplete="off"></label></div>
       <label class="check"><input type="checkbox" name="acepta" required> Acepto recibir el boletín de la Misión Lebrel por correo.</label>
       <p class="form-msg mono" role="status" aria-live="polite"></p>
     </form>
