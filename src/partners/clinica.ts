@@ -29,3 +29,22 @@ export async function compartirConClinica(
   console.log(JSON.stringify({ evento: `clinica.${resultado}`, solicitud: s.id, status: res?.status ?? null }))
   return resultado
 }
+
+// Si la persona pide borrar sus datos, la clínica también debe borrar la evaluación que le enviamos.
+export async function eliminarEnClinica(
+  referencia: string,
+  env: Env,
+  fetchImpl: typeof fetch = fetch,
+): Promise<'enviado' | 'omitido' | 'error'> {
+  if (!env.CLINICA_API_KEY) {
+    console.log(JSON.stringify({ evento: 'clinica.supresion.omitida', solicitud: referencia }))
+    return 'omitido'
+  }
+  const res = await fetchImpl(`${env.CLINICA_API_URL ?? DEFAULT_URL}/${encodeURIComponent(referencia)}`, {
+    method: 'DELETE',
+    headers: { authorization: `Bearer ${env.CLINICA_API_KEY}` },
+  }).catch(() => null)
+  const resultado = res?.ok || res?.status === 404 ? 'enviado' : 'error'
+  console.log(JSON.stringify({ evento: `clinica.supresion.${resultado}`, solicitud: referencia, status: res?.status ?? null }))
+  return resultado
+}

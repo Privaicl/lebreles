@@ -18,11 +18,13 @@
     }
   ],
   "vars": {
-    "ALLOWED_ORIGINS": "https://lebreles.cl,https://www.lebreles.cl,https://lebreles.privai-demo.workers.dev,http://localhost:8787"
+    "ALLOWED_ORIGINS": "https://lebreles.cl,https://www.lebreles.cl,https://lebreles.privai-demo.workers.dev,http://localhost:8787",
+    "PRIVAI_API_URL": "https://api.privai.cl"
   },
   "triggers": {
-    // 03:40 en Chile (UTC-3): purga de datos vencidos, ver src/retention.ts
-    "crons": ["40 6 * * *"]
+    // 03:40 en Chile (UTC-3): purga de datos vencidos, ver src/retention.ts.
+    // Cada minuto: el agente de derechos ARSOP consulta sus tareas en Privai, ver src/derechos.ts.
+    "crons": ["40 6 * * *", "* * * * *"]
   },
   "observability": { "enabled": true }
 }

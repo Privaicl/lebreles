@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import { handleCollect } from './activities/analitica'
 import { handleAvistamiento } from './activities/avistamiento'
 import { handleSolicitud } from './activities/solicitud'
+import { CRON_PRIVAI, atenderPrivai } from './derechos'
 import type { Env } from './env'
 import { fail } from './lib/respond'
 import { ensureSession, hasSession } from './lib/session'
@@ -34,7 +35,9 @@ app.post('/api/avistamiento', handleAvistamiento)
 app.post('/api/collect', handleCollect)
 
 async function scheduled(event: ScheduledController, env: Env, ctx: ExecutionContext) {
-  ctx.waitUntil(purgeExpired(env.DB, new Date(event.scheduledTime)))
+  // Cada minuto: tareas de derechos ARSOP desde Privai (src/derechos.ts). A diario: retención.
+  if (event.cron === CRON_PRIVAI) ctx.waitUntil(atenderPrivai(env))
+  else ctx.waitUntil(purgeExpired(env.DB, new Date(event.scheduledTime)))
 }
 
 export default { fetch: app.fetch, scheduled }
