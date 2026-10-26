@@ -94,9 +94,4 @@
     if (!f.correo.checkValidity()) return { el: f.correo, text: 'Ese correo no llega a ninguna parte.' }
     return null
   })
-  wire(document.getElementById('f-boletin'), (f) => {
-    if (!f.correo.value.trim() || !f.correo.checkValidity()) return { el: f.correo, text: 'Necesitamos un correo que funcione.' }
-    if (!f.acepta.checked) return { el: f.acepta, text: 'Sin tu aceptación no te escribimos.' }
-    return null
-  })
 })();

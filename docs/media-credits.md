@@ -13,7 +13,6 @@ Generado por `scripts/fetch-media.mjs`.
 | `img/archivo-muybridge.jpg` | Muybridge, Eadweard, 1830-1904, photographer | Public domain | https://commons.wikimedia.org/wiki/File:Greyhound,_running_LCCN2008681182.jpg |
 | `img/vinculo-vermis.jpg` | Agricultural Research Service | Public domain | https://commons.wikimedia.org/wiki/File:Soybean_cyst_nematode_and_egg_SEM.jpg |
 | `img/credo-cam03.jpg` | Levethane | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Greyhound_Sleeping.jpg |
-| `img/boletin-cam07.jpg` | TheHeroAntagon1st | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Long-haired_Saluki_from_Qatar.jpg |
 | `audio/frag-01.mp3` | esperri (tramo 0–3 s) | CC0 | https://freesound.org/s/118970/ |
 | `audio/frag-02.mp3` | Breviceps (tramo 0–6 s) | CC0 | https://freesound.org/s/462660/ |
 | `audio/frag-03.mp3` | kyles (tramo 1.8–3.6 s) | CC0 | https://freesound.org/s/455745/ |

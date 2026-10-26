@@ -18,8 +18,7 @@
     }
   ],
   "vars": {
-    "ALLOWED_ORIGINS": "https://lebreles.cl,https://www.lebreles.cl,https://lebreles.privai-demo.workers.dev,http://localhost:8787",
-    "BREVO_LIST_ID": "3"
+    "ALLOWED_ORIGINS": "https://lebreles.cl,https://www.lebreles.cl,https://lebreles.privai-demo.workers.dev,http://localhost:8787"
   },
   "triggers": {
     // 03:40 en Chile (UTC-3): purga de datos vencidos, ver src/retention.ts

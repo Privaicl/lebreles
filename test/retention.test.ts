@@ -18,7 +18,7 @@ async function insertVisita(vid: string, created: string) {
 const ids = async (sql: string) => (await env.DB.prepare(sql).all<{ k: string }>()).results.map((r) => r.k)
 
 beforeEach(async () => {
-  await env.DB.exec('DELETE FROM solicitudes_colonizacion; DELETE FROM visitas; DELETE FROM boletin_suscriptores;')
+  await env.DB.exec('DELETE FROM solicitudes_colonizacion; DELETE FROM visitas;')
 })
 
 describe('retention', () => {
@@ -34,15 +34,6 @@ describe('retention', () => {
     expect(await purgeExpired(env.DB, NOW)).toEqual({ solicitudes_colonizacion: 1, visitas: 1 })
     expect(await ids('SELECT id AS k FROM solicitudes_colonizacion')).toEqual(['new'])
     expect(await ids('SELECT visitor_id AS k FROM visitas')).toEqual(['new'])
-  })
-
-  it('never touches the newsletter', async () => {
-    await env.DB.prepare(
-      `INSERT INTO boletin_suscriptores (correo, acepta_marketing, consentimiento_at, baja_token, created_at)
-       VALUES ('a@b.cl', 1, '2019-01-01T00:00:00.000Z', 't', '2019-01-01T00:00:00.000Z')`,
-    ).run()
-    await purgeExpired(env.DB, NOW)
-    expect(await ids('SELECT correo AS k FROM boletin_suscriptores')).toEqual(['a@b.cl'])
   })
 
   it('empty tables are fine', async () => {
