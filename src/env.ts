@@ -6,4 +6,8 @@ export interface Env {
   /** Secretos opcionales. Sin ellos, las integraciones con terceros se omiten. */
   CLINICA_API_KEY?: string
   CLINICA_API_URL?: string
+  /** API de Privai a la que el agente de derechos ARSOP pide sus tareas (src/derechos.ts). */
+  PRIVAI_API_URL: string
+  /** Clave del agente registrado en Privai (agent_…). Sin ella, el agente no hace nada. */
+  PRIVAI_AGENT_KEY?: string
 }

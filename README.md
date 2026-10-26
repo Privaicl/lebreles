@@ -25,6 +25,25 @@ El sitio no tiene boletín: el consentimiento para recibirlo se pide y se gestio
 
 La página carga además las fuentes desde Google Fonts.
 
+## Derechos ARSOP
+
+lebreles es un **agente** de Privai (`src/derechos.ts`). La persona pide el derecho en el centro de
+privacidad de Privai, que la verifica y deja una tarea en el bloque "Agente" del workflow. Cada minuto
+un cron de lebreles consulta las tareas pendientes en Privai, toma las suyas por su clave técnica
+(`node_key`), las ejecuta y entrega el resultado. Privai nunca llama a lebreles.
+
+| Workflow en Privai | Acción del bloque | `node_key` | Qué hace lebreles |
+|---|---|---|---|
+| Acceso | Recopilar | `lebreles_recopilar` | Entrega todas las filas de la persona, tal como están guardadas |
+| Supresión | Eliminar | `lebreles_eliminar` | Avisa a la clínica si recibió la solicitud y borra las filas. Si la clínica falla, no borra nada y la tarea queda fallida para revisión |
+
+La persona se identifica por su correo. La Analítica del sitio no entra: las visitas solo tienen el
+id de la cookie `lb_vid`.
+
+Para conectarlo: registrar el agente en Privai (DSAR → Agentes), guardar su clave con
+`npx wrangler secret put PRIVAI_AGENT_KEY` y poner los bloques de la tabla en los workflows de acceso y
+supresión. Sin la clave, el cron no hace nada.
+
 ## Cómo probarlo
 
 Una persona puede cambiar el código y ver cómo cambia el RAT en Veil antes de hacer merge.
