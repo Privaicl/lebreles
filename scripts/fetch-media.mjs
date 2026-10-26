@@ -17,7 +17,6 @@ const images = [
   ['img/archivo-muybridge.jpg', 'File:Greyhound, running LCCN2008681182.jpg'],
   ['img/vinculo-vermis.jpg', 'File:Soybean cyst nematode and egg SEM.jpg'],
   ['img/credo-cam03.jpg', 'File:Greyhound Sleeping.jpg'],
-  ['img/boletin-cam07.jpg', 'File:Long-haired Saluki from Qatar.jpg'],
 ]
 
 // Audio CC0 de Freesound. El reproductor toca solo el tramo indicado (no hay recorte del archivo).

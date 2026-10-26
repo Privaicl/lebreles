@@ -62,19 +62,6 @@
   .rules li{padding:14px 0;border-bottom:1px solid var(--line);display:flex;gap:18px;color:var(--mist)}
   .rules li span{font:italic 500 19px "Cormorant Garamond";color:var(--gold);min-width:2.4em}
 
-  /* transmisiones + form */
-  .trans{display:grid;grid-template-columns:.9fr 1.1fr;gap:5vw;align-items:center}
-  .trans .photo{position:relative;height:560px;overflow:hidden}
-  .trans .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:grayscale(.6) contrast(1.15) brightness(.62) sepia(.15)}
-  .waves{position:absolute;left:52%;top:6%;width:160px;height:160px}
-  .waves i{position:absolute;inset:0;border:1px solid var(--signal);border-radius:50%;opacity:.0;animation:w 3.6s infinite}
-  .waves i:nth-child(2){animation-delay:1.2s}.waves i:nth-child(3){animation-delay:2.4s}
-  @keyframes w{0%{transform:scale(.2);opacity:.9}100%{transform:scale(1.4);opacity:0}}
-  @media (prefers-reduced-motion:reduce){.waves i{animation:none;opacity:.4}}
-  .field{display:flex;gap:10px;margin-top:26px}
-  .field input{flex:1;background:transparent;border:1px solid #ebe5d640;color:var(--bone);padding:14px 16px;border-radius:999px;font:400 16px "Schibsted Grotesk"}
-  .field input::placeholder{color:var(--mist)}
-  .check{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:14px;color:var(--mist)}
 
   .form-card{margin-top:0;background:var(--deep);border:1px solid var(--line);padding:44px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px 22px}
   .form-card label{font-size:13px;color:var(--mist);display:block;margin-bottom:6px}
@@ -154,7 +141,6 @@
   .form-msg.err{color:#ff9b8a}
   .bad{border-color:#ff9b8a !important}
   .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   .form-card input[type=time]{color-scheme:dark}
   .done input,.done select,.done button{opacity:.45;pointer-events:none}
 
@@ -183,14 +169,12 @@
     .carousel .archive{margin:0 -16px;padding:0 16px 18px;scroll-padding-left:16px}
     .carousel .archive figure{flex-basis:min(420px,82vw)}
     .carousel .archive .frame{height:min(440px,90vw)}
-    .credo,.bond,.trans{grid-template-columns:1fr;gap:40px}
-    .trans .photo{height:420px}
+    .credo,.bond{grid-template-columns:1fr;gap:40px}
     .form-card{grid-template-columns:1fr;padding:24px}
     .frags{grid-template-columns:1fr 1fr}
     .frags li:nth-child(2){border-right:0}
     .frags li:nth-child(-n+2){border-bottom:1px solid var(--line)}
     .console-head{padding:12px 14px;font-size:11px}
-    .field{flex-direction:column}
     footer{flex-direction:column;align-items:flex-start;padding:40px 16px}
     .credits{padding:0 16px 40px}
     .art-num{font-size:84px}

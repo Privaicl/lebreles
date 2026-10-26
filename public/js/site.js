@@ -102,9 +102,4 @@
     if (f.fecha.value > f.fecha.max) return { el: f.fecha, text: 'Falta un campo. Lo notamos.' }
     return null
   })
-  wire(document.getElementById('f-boletin'), (f) => {
-    if (!f.correo.value.trim() || !f.correo.checkValidity()) return { el: f.correo, text: 'Necesitamos un correo que funcione.' }
-    if (!f.acepta.checked) return { el: f.acepta, text: 'Sin tu aceptación no te escribimos.' }
-    return null
-  })
 })();

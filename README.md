@@ -11,7 +11,6 @@ Nada de esto es real. Los lebreles no colonizan la Tierra (que sepamos) y nadie 
 | Actividad | Datos | Finalidad | Conservación | Destinatario | Código |
 |---|---|---|---|---|---|
 | Solicitud de colonización | nombre, RUT, correo, teléfono, dirección, hora en que apaga la luz, si la casa tiene escaleras | Evaluar si el hogar puede recibir a un lebrel | 24 meses | Clínica Veterinaria Órbita Baja SpA (visita de evaluación; no recibe el correo) | `src/activities/solicitud.ts`, `src/partners/clinica.ts`, `migrations/0001_*.sql` |
-| Boletín de la nave | correo, aceptación y su fecha | Enviar el boletín mensual | Hasta la baja | Brevo (Unión Europea) | `src/activities/boletin.ts`, `src/partners/brevo.ts`, `migrations/0002_*.sql` |
 | Reporte de avistamiento | nombre, correo, comuna, fecha, descripción | Catalogar avistamientos | 12 meses | Ninguno | `src/activities/avistamiento.ts`, `migrations/0004_*.sql` |
 | Analítica del sitio | id aleatorio del visitante (cookie `lb_vid`), ruta, sitio de origen, navegador | Estadísticas de uso | 13 meses | Ninguno | `src/activities/analitica.ts`, `public/js/analytics.js`, `migrations/0003_*.sql` |
 
@@ -21,7 +20,9 @@ Cookies:
 - `lb_vid`: analítica, no esencial, 13 meses. Se crea al cargar la página, sin preguntar.
 
 Los plazos se aplican con un cron diario a las 03:40 (hora de Chile), en `src/retention.ts`.
-Brevo y la clínica solo reciben datos si sus claves están configuradas. En producción no lo están.
+La clínica solo recibe datos si su clave está configurada. En producción no lo está.
+
+El sitio no tiene boletín: el consentimiento para recibirlo se pide y se gestiona en Privai.
 
 La página carga además las fuentes desde Google Fonts.
 

@@ -1,5 +1,4 @@
 // Plazos de conservación. El cron diario (wrangler.jsonc, 03:40 en Chile) borra lo vencido.
-// El boletín no aparece aquí: los suscriptores se conservan hasta que se dan de baja.
 export const RETENCION: ReadonlyArray<{ tabla: 'solicitudes_colonizacion' | 'visitas' | 'avistamientos'; meses: number }> = [
   { tabla: 'solicitudes_colonizacion', meses: 24 },
   { tabla: 'visitas', meses: 13 },
