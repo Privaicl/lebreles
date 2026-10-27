@@ -12,7 +12,8 @@
   /* nav */
   nav{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:22px 5vw}
   nav .brand{font:italic 500 22px "Cormorant Garamond";color:var(--bone)}
-  nav .links{display:flex;gap:28px;font-size:14px;color:var(--mist)}
+  nav .links{display:flex;gap:28px;font-size:14px;color:var(--mist);align-items:center}
+  nav .btn{padding:8px 16px;font-size:13px}
 
   /* hero */
   .hero{position:relative;min-height:92vh;display:grid;grid-template-columns:1fr 1fr;align-items:end;overflow:hidden;
@@ -159,7 +160,7 @@
   @media (max-width:860px){
     body{font-size:16px}
     nav{padding:18px 16px}
-    nav .links a:not([href="#solicitud"]){display:none}
+    nav .links a:not([href="#solicitud"]):not(.btn){display:none}
     .hero{grid-template-columns:1fr;min-height:auto}
     .hero-img{order:-1;height:60vh}
     .hero-copy{padding:0 16px 64px}
