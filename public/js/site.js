@@ -94,4 +94,12 @@
     if (!f.correo.checkValidity()) return { el: f.correo, text: 'Ese correo no llega a ninguna parte.' }
     return null
   })
+  const fecha = document.getElementById('a-fecha')
+  fecha.max = new Date().toISOString().slice(0, 10)
+  wire(document.getElementById('f-avistamiento'), (f) => {
+    for (const el of f.querySelectorAll('[required]')) if (!el.value.trim()) return { el, text: 'Falta un campo. Lo notamos.' }
+    if (!f.correo.checkValidity()) return { el: f.correo, text: 'Ese correo no llega a ninguna parte.' }
+    if (f.fecha.value > f.fecha.max) return { el: f.fecha, text: 'Falta un campo. Lo notamos.' }
+    return null
+  })
 })();

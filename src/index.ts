@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import { handleCollect } from './activities/analitica'
+import { handleAvistamiento } from './activities/avistamiento'
 import { handleSolicitud } from './activities/solicitud'
 import { CRON_PRIVAI, atenderPrivai } from './derechos'
 import type { Env } from './env'
@@ -30,6 +31,7 @@ app.use('/api/*', async (c, next) => {
 })
 
 app.post('/api/solicitud', handleSolicitud)
+app.post('/api/avistamiento', handleAvistamiento)
 app.post('/api/collect', handleCollect)
 
 async function scheduled(event: ScheduledController, env: Env, ctx: ExecutionContext) {
