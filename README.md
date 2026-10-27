@@ -11,7 +11,7 @@ Nada de esto es real. Los lebreles no colonizan la Tierra (que sepamos) y nadie 
 | Actividad | Datos | Finalidad | Conservación | Destinatario | Código |
 |---|---|---|---|---|---|
 | Solicitud de colonización | nombre, RUT, correo, teléfono, dirección, hora en que apaga la luz, si la casa tiene escaleras | Evaluar si el hogar puede recibir a un lebrel | 24 meses | Clínica Veterinaria Órbita Baja SpA (visita de evaluación; no recibe el correo) | `src/activities/solicitud.ts`, `src/partners/clinica.ts`, `migrations/0001_*.sql` |
-| Reporte de avistamiento | nombre, correo, comuna, fecha, descripción | Catalogar avistamientos | 12 meses | Ninguno | `src/activities/avistamiento.ts`, `migrations/0004_*.sql` |
+| Reporte de avistamiento | nombre, correo, comuna, fecha, descripción | Catalogar avistamientos | 12 meses | Ninguno | `src/activities/avistamiento.ts`, `migrations/0006_*.sql` |
 | Analítica del sitio | id aleatorio del visitante (cookie `lb_vid`), ruta, sitio de origen, navegador | Estadísticas de uso | 13 meses | Ninguno | `src/activities/analitica.ts`, `public/js/analytics.js`, `migrations/0003_*.sql` |
 
 Cookies:
@@ -58,7 +58,7 @@ Una persona puede cambiar el código y ver cómo cambia el RAT en Veil antes de 
 4. Hace commit en una rama nueva y abre un PR.
 5. En Veil, el RAT muestra el dato nuevo en la actividad "Solicitud de colonización".
 
-Al hacer merge de este PR, el CI aplica la migración `0004_avistamientos.sql` y despliega solo.
+Al hacer merge de este PR, el CI aplica la migración `0006_avistamientos.sql` y despliega solo.
 
 ## Desarrollo
 
