@@ -17,7 +17,7 @@ Nada de esto es real. Los lebreles no colonizan la Tierra (que sepamos) y nadie 
 Cookies:
 
 - `lb_session`: esencial. Solo comprueba que los formularios salen de nuestra página.
-- `lb_vid`: analítica, no esencial, 13 meses. Se crea al cargar la página, sin preguntar.
+- `lb_vid`: analítica, no esencial, 13 meses. Solo se crea si el visitante acepta la categoría "analytics" en el banner de Privai: `public/index.html` carga `analytics.js` con `type="text/plain" data-category="analytics"`.
 
 Los plazos se aplican con un cron diario a las 03:40 (hora de Chile), en `src/retention.ts`.
 La clínica solo recibe datos si su clave está configurada. En producción no lo está.
